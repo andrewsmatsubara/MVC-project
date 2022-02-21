@@ -27,6 +27,8 @@ describe('Na camada Models', () => {
     it('Retorna um array de objetos', async () => {
       const response = await Album.getAllAlbums();
 
+      console.log(response);
+
       expect(response).to.be.an('array');
     });
 
