@@ -15,7 +15,7 @@ describe('Na camada Models', () => {
       album: "Adeus, Robô",
       artist_id: 2
     }];
-    
+
     before(async () => {
       sinon.stub(connection, 'execute').resolves(albums)
     });
@@ -28,6 +28,16 @@ describe('Na camada Models', () => {
       const response = await Album.getAllAlbums();
 
       expect(response).to.be.an('array');
+    });
+
+    it('Possui id, album e artist_id como propriedades', async () => {
+      const response = await Album.getAllAlbums();
+
+      for (let i = 0; i < response.length; i += 1) {
+        expect(response[i]).to.haveOwnProperty('id');
+        expect(response[i]).to.have.property('album');
+        expect(response[i]).to.have.property('artist_id');
+      }
     });
   });
 });
